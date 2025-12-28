@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { UserContext } from "../../Context/UserContext";
 import { OrderContext } from "../../Context/OrderContext";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import React from 'react'
 
@@ -13,6 +14,9 @@ const Orders = () => {
     
   return (
     <div className="p-8 max-w-3xl mx-auto">
+       <div>
+   <Link to='/dashboard'> <button className="bg-pink-950 text-white rounded-full p-2">Back to Dashboard</button></Link>
+  </div>
         <h1 className="text-3xl font-bold mb-6 text-center">My Orders</h1>
 
       {
@@ -49,6 +53,7 @@ const Orders = () => {
                            </div>
 
 
+ 
                 </div>
             ))
         )

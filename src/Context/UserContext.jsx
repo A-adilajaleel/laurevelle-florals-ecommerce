@@ -4,6 +4,7 @@ import toast from "react-hot-toast"
 
 export const UserContext = createContext()
 
+
 export const UserProvider = ({ children }) => {
   const navigate = useNavigate()
 
@@ -38,17 +39,24 @@ export const UserProvider = ({ children }) => {
   const loginuser = (data) => {
     const exist = users.find((u) => u.email === data.email)
 
-   if (exist.password === data.password) {
-  setUser(exist)
-  toast.success("Logged in!")
+    if (!exist) {
+      toast.error("User not found")
+      return
+    }
 
-  if (exist.isAdmin) {
-    navigate("/admindashboard")
-  } else {
-    navigate("/dashboard")
-  }
-}
+    if (exist.password !== data.password) {
+      toast.error("Invalid password")
+      return
+    }
 
+    setUser(exist)
+    toast.success("Logged in")
+
+    if (exist.isAdmin) {
+      navigate("/admindashboard")
+    } else {
+      navigate("/dashboard")
+    }
   }
 
   return (

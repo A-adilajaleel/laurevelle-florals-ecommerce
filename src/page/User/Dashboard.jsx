@@ -15,9 +15,11 @@ const Dashboard = () => {
 
   const navigate = useNavigate()
 
+
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
-     <div className='flex justify-between ite'>
+   
+     <div className='flex justify-between items-center'>
       <h1 className="text-4xl font-extrabold mb-8 text-pink-600">User Dashboard</h1>
       <div className='flex items-center mb-2'>
       <h2 className='text-pink-900 bg-pink-400 p-2 rounded-full font-bold cursor-pointer' onClick={()=>navigate("/orders")}>Your Orders</h2>

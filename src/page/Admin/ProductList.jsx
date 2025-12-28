@@ -3,8 +3,7 @@ import { ProductContext } from "../../Context/ProductContext"
 import ProductCard from "../../Components/PorductCard"
 
 const ProductList = () => {
-  const { products, deleteProduct, updateProduct } =
-    useContext(ProductContext)
+  const { products, deleteProduct, updateProduct } = useContext(ProductContext)
 
   const [editId, setEditId] = useState(null)
   const [editData, setEditData] = useState({})
@@ -31,21 +30,53 @@ const ProductList = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products.map(product =>
           editId === product.id ? (
-            <div
-              key={product.id}
-              className="bg-white p-4 rounded-2xl shadow"
-            >
+            <div key={product.id} className="bg-white p-4 rounded-2xl shadow">
+              
               <input
                 name="name"
                 value={editData.name}
                 onChange={handleInput}
+                placeholder="Name"
                 className="border px-3 py-2 w-full mb-2"
               />
-
+              
               <input
                 name="price"
                 value={editData.price}
                 onChange={handleInput}
+                placeholder="Price"
+                className="border px-3 py-2 w-full mb-2"
+              />
+
+              <input
+                name="category"
+                value={editData.category}
+                onChange={handleInput}
+                placeholder="Category"
+                className="border px-3 py-2 w-full mb-2"
+              />
+
+              <input
+                name="subtype"
+                value={editData.subtype}
+                onChange={handleInput}
+                placeholder="Subtype"
+                className="border px-3 py-2 w-full mb-2"
+              />
+
+              <input
+                name="description"
+                value={editData.description}
+                onChange={handleInput}
+                placeholder="Description"
+                className="border px-3 py-2 w-full mb-2"
+              />
+
+              <input
+                name="image"
+                value={editData.image}
+                onChange={handleInput}
+                placeholder="Image URL"
                 className="border px-3 py-2 w-full mb-2"
               />
 
