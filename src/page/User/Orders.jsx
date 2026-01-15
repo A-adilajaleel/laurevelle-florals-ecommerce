@@ -65,7 +65,7 @@ const Orders = () => {
                                                                                 </p>
                                               <button 
                                         onClick={() => handleDelete(order.id)}
-                                        className="bg-red-900 text-white rounded-full px-4 py-1.5 cursor-pointer hover:bg-red-700 transition"
+                                        className="bg-red-900 text-white rounded-full px-4 py-1.5 cursor-pointer hover:bg-red-700 transition mt-4"
                                     >
                                         Delete
                                     </button>
