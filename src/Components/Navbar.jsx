@@ -51,7 +51,7 @@ const Navbar = () => {
           onClick={toggletheme} 
           className="px-3 py-2 rounded-lg border border-rose-700 hover:bg-rose-300 transition-colors"
         >
-          Change
+          Theme
         </button>
       </div>
     </nav>
