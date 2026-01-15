@@ -27,52 +27,67 @@ const ProductCard = ({ product, onEdit, onDelete }) => {
   }
 
   return (
-    <div className="bg-white rounded-xl shadow-lg overflow-hidden transition-transform transform hover:scale-105 hover:shadow-2xl">
-      <img
-        src={product.image}
-        alt={product.name}
-        onClick={() => navigate(`/product/${product.id}`)}
-        className="w-full h-48 object-cover cursor-pointer"
-      />
-
-      <div className="p-4 text-center">
-        <h3 className="text-xl font-semibold text-gray-800">{product.name}</h3>
-        <p className="text-gray-600 mt-1">₹ {product.price}</p>
-        <p className="text-gray-500 text-sm mt-2">{product.subtype}</p>
+    <div className="group relative bg-white rounded-3xl shadow-md hover:shadow-2xl transition-all duration-500 overflow-hidden flex flex-col h-full border border-gray-100">
+      
+      <div className="relative h-64 overflow-hidden">
+        <img
+          src={product.image}
+          alt={product.name}
+          onClick={() => navigate(`/product/${product.id}`)}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 cursor-pointer"
+        />
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500 pointer-events-none" />
       </div>
 
-      <div className="p-4 flex gap-3">
-        {isAdmin ? (
-          <>
-            <button
-              onClick={() => onEdit(product)}
-              className="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
-            >
-              Edit
-            </button>
-            <button
-              onClick={() => onDelete(product.id)}
-              className="flex-1 bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition"
-            >
-              Delete
-            </button>
-          </>
-        ) : (
-          <>
-            <button
-              onClick={handleAddToCart}
-              className="flex-1 bg-amber-800 text-white py-2 rounded-lg hover:bg-amber-900 transition"
-            >
-              Add to Cart
-            </button>
-            <button
-              onClick={handleBuy}
-              className="flex-1 bg-amber-800 text-white py-2 rounded-lg hover:bg-amber-900 transition"
-            >
-              Buy
-            </button>
-          </>
-        )}
+      <div className="p-6 flex flex-col flex-1 items-center text-center">
+        <p className="text-xs font-bold tracking-widest text-pink-600 uppercase mb-2">
+          {product.subtype}
+        </p>
+        
+        <h3 
+          onClick={() => navigate(`/product/${product.id}`)}
+          className="font-serif text-2xl font-medium text-gray-900 mb-2 cursor-pointer hover:text-pink-800 transition-colors"
+        >
+          {product.name}
+        </h3>
+        
+        <p className="text-lg font-semibold text-gray-700 mb-4">
+          € {product.price}
+        </p>
+
+        <div className="w-full mt-auto flex gap-3 pt-4 border-t border-gray-100">
+          {isAdmin ? (
+            <>
+              <button
+                onClick={() => onEdit(product)}
+                className="flex-1 bg-slate-800 text-white py-2.5 rounded-full text-sm font-medium hover:bg-slate-900 hover:shadow-lg transition-all active:scale-95"
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => onDelete(product.id)}
+                className="flex-1 bg-red-500 text-white py-2.5 rounded-full text-sm font-medium hover:bg-red-600 hover:shadow-lg transition-all active:scale-95"
+              >
+                Delete
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={handleAddToCart}
+                className="flex-1 bg-white border border-pink-900 text-pink-900 py-2.5 rounded-full text-sm font-bold hover:bg-pink-50 transition-colors active:scale-95"
+              >
+                Add to Cart
+              </button>
+              <button
+                onClick={handleBuy}
+                className="flex-1 bg-pink-900 text-white py-2.5 rounded-full text-sm font-bold shadow-md hover:bg-pink-800 hover:shadow-xl transition-all active:scale-95"
+              >
+                Buy Now
+              </button>
+            </>
+          )}
+        </div>
       </div>
     </div>
   )

@@ -68,24 +68,35 @@ const Dashboard = () => {
       </div>
 
       <h2 className="text-3xl font-semibold mb-6 text-pink-700">Our Categories</h2>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-        {categories.map((cat) => (
-          <div
-            key={cat.id}
-            onClick={() => navigate(`/category/${cat.name}`)}
-            className="cursor-pointer bg-white shadow-lg rounded-2xl p-3 hover:scale-105 hover:shadow-2xl transition-transform duration-300 text-center flex flex-col items-center"
-          >
-            <div className="w-full h-36 overflow-hidden rounded-xl mb-3">
-              <img
-                src={cat.images}
-                alt={cat.name}
-                className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
-              />
-            </div>
-            <p className="text-lg font-semibold text-pink-600">{cat.name}</p>
-          </div>
-        ))}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 px-2 sm:px-4">
+  {categories.map((cat) => (
+    <div
+      key={cat.id}
+      onClick={() => navigate(`/category/${cat.name}`)}
+      className="group cursor-pointer bg-white rounded-3xl shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 border border-gray-100 flex flex-col items-center overflow-hidden"
+    >
+     
+      <div className="w-full h-40 sm:h-60 overflow-hidden relative">
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-pink-900/10 z-10 transition-colors duration-300" />
+        <img
+          src={cat.images}
+          alt={cat.name}
+          className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out"
+        />
       </div>
+
+    
+      <div className="p-5 w-full text-center">
+       
+        <div className="w-6 h-1 bg-pink-200 rounded-full mx-auto mb-3 transition-all duration-300 group-hover:w-12 group-hover:bg-pink-800" />
+        
+        <p className="text-lg sm:text-xl font-serif font-bold text-gray-800 group-hover:text-pink-900 transition-colors">
+          {cat.name}
+        </p>
+      </div>
+    </div>
+  ))}
+</div>
 
     </div>
   )
