@@ -5,6 +5,7 @@ import { CartContext } from "../../Context/CartContext"
 import { UserContext } from "../../Context/UserContext"
 
 
+
 const CategoryProducts = () => {
     const { user } = useContext(UserContext)
 
@@ -82,6 +83,13 @@ const CategoryProducts = () => {
           ))}
         </div>
       )}
+   
+<button 
+  onClick={() => navigate(-1)} 
+  className="bg-amber-950 text-white font-mono rounded-full p-1 w-33 mt-4"
+>
+  Back
+</button>
     </div>
   )
 }

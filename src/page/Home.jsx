@@ -9,6 +9,7 @@ import CustomOrders from './CustomOrders'
 const Home = () => {
     const{categories}=useContext(CategoryContext)
     const{products}=useContext(ProductContext)
+    localStorage.removeItem("products");
     const navigate = useNavigate()
   return (
     <div className="relative">

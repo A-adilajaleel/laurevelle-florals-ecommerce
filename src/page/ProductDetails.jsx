@@ -1,6 +1,6 @@
 import React from 'react'
 import { useContext } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams,useNavigate } from 'react-router-dom'
 import { ProductContext } from '../Context/ProductContext'
 import { CartContext } from '../Context/CartContext'
 
@@ -8,6 +8,7 @@ const ProductDetails = () => {
     const{id}=useParams()
     const{products}=useContext(ProductContext)
     const{addtoCart}=useContext(CartContext)
+    const navigate= useNavigate()
     const product=products.find(p=>p.id===Number(id))
     if(!product){
         return <p>Product Not Found</p>
@@ -35,8 +36,16 @@ Add to Cart</button>
 >
 Buy</button>
 </div> 
+<button 
+  onClick={() => navigate(-1)} 
+  className="bg-amber-950 text-white font-mono rounded-full p-1 w-33 mt-4"
+>
+  Back
+</button>
 </div>
+
    </div>
+   
     </div>
   )
 }

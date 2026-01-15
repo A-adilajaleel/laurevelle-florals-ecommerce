@@ -55,11 +55,11 @@ export const CartProvider = ({ children }) => {
     }
   }
 
-  const clearCart = () => {
-    if (confirm("Are you sure you want to clear the cart?")) {
-      setCart([])
-    }
-  }
+ const clearCart = () => {
+    
+    setCart([]) 
+}
+  
 
   return (
     <CartContext.Provider

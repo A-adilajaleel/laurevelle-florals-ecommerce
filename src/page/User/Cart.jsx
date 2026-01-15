@@ -79,6 +79,12 @@ const Cart = () => {
           </div>
         </>
       )}
+      <button 
+  onClick={() => navigate(-1)} 
+  className="bg-amber-950 text-white font-mono rounded-full p-1 w-33 mt-4"
+>
+  Back
+</button>
     </div>
   )
 }

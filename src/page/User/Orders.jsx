@@ -3,14 +3,22 @@ import { UserContext } from "../../Context/UserContext";
 import { OrderContext } from "../../Context/OrderContext";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 import React from 'react'
 
 const Orders = () => {
     const navigate=useNavigate()
     const{user}=useContext(UserContext)
-    const{getUserOrders}=useContext(OrderContext)
+    const{getUserOrders,deleteOrder}=useContext(OrderContext)
      const orders=getUserOrders(user.id)
+     const handleDelete = (orderId) => {
+        const confirmDelete = window.confirm("Are you sure you want to delete this order?")
+        if (confirmDelete) {
+            deleteOrder(orderId)
+            toast.success("Order deleted successfully")
+        }
+    }
     
   return (
     <div className="p-8 max-w-3xl mx-auto">
@@ -44,16 +52,28 @@ const Orders = () => {
 
                             </ul>
                                  <p className="mb-2"><b>Total:</b> € {order.total}</p>
-                                 <p className="font-semibold">
-                                      Status: <span className={order.status === "Placed" ? "text-blue-600" : "text-green-600"}>
-                                          {order.status}
-                                                </span>
-                                                    </p>
+                                 <p className="font-semibold mt-2">
+                                     Status: 
+                                               <span className={`ml-2 px-3 py-1 rounded-full text-sm ${
+                                        order.status === "Delivered" ? "bg-green-100 text-green-700" :
+                                       order.status === "Shipped" ? "bg-yellow-100 text-yellow-700" :
+                                             order.status === "Cancelled" ? "bg-red-100 text-red-700" :
+                                                  "bg-blue-100 text-blue-700" 
+                                                          }`}>
+                                                                     {order.status}
+                                                                               </span>
+                                                                                </p>
+                                              <button 
+                                        onClick={() => handleDelete(order.id)}
+                                        className="bg-red-900 text-white rounded-full px-4 py-1.5 cursor-pointer hover:bg-red-700 transition"
+                                    >
+                                        Delete
+                                    </button>
 
                            </div>
 
 
- 
+
                 </div>
             ))
         )

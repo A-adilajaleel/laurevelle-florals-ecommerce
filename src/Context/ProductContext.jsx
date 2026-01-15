@@ -4,12 +4,12 @@ import { initialProducts } from './Data'
 export const ProductContext = createContext()
 
 export const ProductProvider = ({ children }) => {
- // FIXED LOGIC: If storage is empty OR has 0 items, load initialProducts
+
   const [products, setProducts] = useState(() => {
     const savedProducts = localStorage.getItem("products");
     const parsedProducts = savedProducts ? JSON.parse(savedProducts) : [];
     
-    // If the saved list has items, use it. If it is empty, use Data.js
+
     return parsedProducts.length > 0 ? parsedProducts : initialProducts;
   })
 
