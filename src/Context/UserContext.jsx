@@ -40,10 +40,19 @@ const [users, setUsers] = useState(() => {
     toast.success("Logged Out")
   }
 
-  const registerUser = (data) => {
-    setUsers((prev) => [...prev, { id: Date.now(), ...data, isAdmin: false }])
-    toast.success("Registered Successfully")
-    navigate("/login")
+ const registerUser = (data) => {
+
+    const existingUser = users.find((u) => u.email === data.email);
+
+    if (existingUser) {
+      toast.error("User already exists!")
+      return
+    }
+
+
+    setUsers((prev) => [...prev, { id: Date.now(), ...data, isAdmin: false }]);
+    toast.success("Registered Successfully");
+    navigate("/login");
   }
 
   const loginuser = (data) => {
