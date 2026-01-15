@@ -1,12 +1,14 @@
 import { createContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import toast from "react-hot-toast"
+import { CartContext } from "./CartContext"
 
 export const UserContext = createContext()
 
 
 export const UserProvider = ({ children }) => {
   const navigate = useNavigate()
+  const { clearCart } = useContext(CartContext)
 
   const [users, setUsers] = useState(
     JSON.parse(localStorage.getItem("users")) || []
@@ -25,8 +27,10 @@ export const UserProvider = ({ children }) => {
   }, [user])
 
   const logout = () => {
+    clearCart()
     setUser(null)
     navigate("/login")
+    
     toast.success("Logged Out")
   }
 
