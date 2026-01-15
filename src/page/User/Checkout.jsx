@@ -94,7 +94,7 @@ const handleOrder = (e) => {
     className="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-green-500 bg-white"
   >
     <option value="">Select Country</option>
-    
+    <option value="United Kingdom">United Kingdom</option>
     <option value="India">India</option>
     <option value="United States">United States</option>
   
