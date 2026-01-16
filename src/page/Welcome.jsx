@@ -8,10 +8,10 @@ const Welcome = () => {
       
     >
       <div className="text-center">
-      <h1 className="text-6xl text-white font-bold font-mono mb-20 cursor-pointer"> Laurevelle Florals </h1>
+      <h1 className="text-4xl md:text-6xl text-white font-bold font-mono mb-10 md:mb-20 cursor-pointer"> Laurevelle Florals </h1>
 
 
-     <Link  to="/home" className = "text-yellow-950 text-2xl font-bold font-mono p-1 bg-white"> <button className="cursor-pointer">SHOP NOW...</button></Link>
+     <Link  to="/home" className="text-yellow-950 text-xl md:text-2xl font-bold font-mono p-1 bg-white inline-block"> <button className="cursor-pointer">SHOP NOW...</button></Link>
      </div>
     </div>
   )
