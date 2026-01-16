@@ -8,6 +8,7 @@ import { UserContext } from "../../Context/UserContext"
 import React from 'react'
 import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
+import AdminCustomRequests from "./AdminCustomRequests"
 
 const AdminDashboard = () => {
   const navigate=useNavigate()
@@ -60,7 +61,15 @@ const AdminDashboard = () => {
         >
           Orders
         </button>
-
+         <button
+          onClick={() => setActiveTab("custom")}
+          className={`block w-full text-left px-4 py-3 rounded-lg font-medium
+            transition duration-300 
+            hover:bg-pink-700 hover:scale-105
+            ${activeTab === "custom" ? "bg-pink-700 shadow-lg" : ""}`}
+        >
+          Custom Requests
+        </button>
         <button
           onClick={() => setActiveTab("messages")}
           className={`block w-full text-left px-4 py-3 rounded-lg font-medium
@@ -89,6 +98,7 @@ const AdminDashboard = () => {
         {activeTab === "categories" && <AdminCategories />}
         {activeTab === "orders" && <ManageOrders />}
         {activeTab === "messages" && <Messages />}
+        {activeTab === "custom" && <AdminCustomRequests />}
       </div>
 
     </div>

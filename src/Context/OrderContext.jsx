@@ -1,4 +1,5 @@
 import { createContext,useEffect,useState } from "react";
+import toast from "react-hot-toast";
 export const OrderContext=createContext()
 
 export const OrderProvider=({children})=>{
@@ -6,10 +7,17 @@ export const OrderProvider=({children})=>{
 const[orders,setOrders]=useState(
    JSON.parse (localStorage.getItem("orders"))||[]
 )
+const [customRequests, setCustomRequests] = useState(
+    JSON.parse(localStorage.getItem("customRequests")) || []
+  )
 
 useEffect(()=>{
     localStorage.setItem("orders",JSON.stringify(orders))
 },[orders])
+
+useEffect(() => {
+    localStorage.setItem("customRequests", JSON.stringify(customRequests));
+  }, [customRequests])
 
 const placeOrder=(userId,cart,total,shipping)=>{
 const newOrder={
@@ -24,6 +32,16 @@ const newOrder={
 setOrders(prev=>[...prev,newOrder])
 }
 
+const addCustomRequest = (formData) => {
+    const newRequest = {
+      id: Date.now(),
+      ...formData, 
+      date: new Date().toLocaleString(),
+      status: "pending",
+    }
+    setCustomRequests((prev) => [...prev, newRequest]);
+  }
+
 const getUserOrders=(userId)=>{
 return orders.filter(order=>order.userId===userId)
 }
@@ -36,6 +54,11 @@ const deleteOrder = (orderId) => {
  
   localStorage.setItem("orders", JSON.stringify(updatedOrders));
 }
+const deleteCustomRequest = (requestId) => {
+      const updatedRequests = customRequests.filter(req => req.id !== requestId);
+      setCustomRequests(updatedRequests);
+      toast.success("Request removed");
+  }
 const updateOrderStatus = (orderId, newStatus) => {
     setOrders(prevOrders => 
       prevOrders.map(order => 
@@ -48,7 +71,9 @@ const updateOrderStatus = (orderId, newStatus) => {
 
 return(
     <OrderContext.Provider value={{orders,placeOrder,
-      getUserOrders,setOrders,deleteOrder,updateOrderStatus}}>
+      getUserOrders,setOrders,deleteOrder,updateOrderStatus,customRequests,
+        addCustomRequest,
+        deleteCustomRequest}}>
         {children}
     </OrderContext.Provider>
 )

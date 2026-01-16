@@ -1,6 +1,11 @@
-import React, { useState } from "react"
+import React, { useContext,useState } from "react"
+import toast from "react-hot-toast"
+import { useNavigate } from "react-router-dom"
+import { OrderContext } from "../Context/OrderContext"
 
 const CustomOrders = () => {
+  const navigate = useNavigate()
+  const { addCustomRequest } = useContext(OrderContext)
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,13 +23,19 @@ const CustomOrders = () => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    console.log("Form submitted:", formData)
-    alert("Form submitted! Check console for data.")
+  addCustomRequest(formData)
+    toast.success("Form submitted successfully!")
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      vision: ""
+    })
   }
 
   return (
-    <div className="bg-pink-200 p-8 rounded-2xl max-w-md mx-auto my-10 shadow-lg">
-      <h2 className="text-pink-800 text-2xl font-semibold mb-6 text-center">
+    <div className="bg-pink-200 p-6 md:p-8 rounded-2xl max-w-md w-[90%] mx-auto my-10 shadow-lg">
+      <h2 className="text-pink-800 text-xl md:text-2xl font-semibold mb-6 text-center">
         INTERESTED IN A CUSTOM ARRANGEMENT?
       </h2>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -71,6 +82,12 @@ const CustomOrders = () => {
           SUBMIT
         </button>
       </form>
+       <button 
+              onClick={() => navigate(-1)} 
+              className="bg-pink-900 text-white font-mono rounded-full py-2 px-8 hover:bg-amber-900 transition-colors w-full sm:w-auto mt-3 cursor-pointer"
+            >
+              Back
+            </button>
     </div>
   )
 }
