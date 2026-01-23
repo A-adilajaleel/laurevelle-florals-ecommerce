@@ -3,8 +3,7 @@ import { ProductContext } from "../../Context/ProductContext"
 import ProductCard from "../../Components/PorductCard"
 
 const ProductList = () => {
-  const { products, deleteProduct, updateProduct } = useContext(ProductContext)
-  
+ const { products, deleteProduct, updateProduct } = useContext(ProductContext)
 
   const [editId, setEditId] = useState(null)
   const [editData, setEditData] = useState({})
@@ -25,85 +24,96 @@ const ProductList = () => {
   }
 
   return (
-    <div className="p-6">
-      <h2 className="text-3xl font-bold mb-6">All Products</h2>
+    <div className="p-4 md:p-8 bg-gray-50 min-h-screen">
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800">All Products</h2>
+        <span className="bg-pink-100 text-pink-600 px-4 py-1 rounded-full text-sm font-semibold">
+          {products.length} Items Total
+        </span>
+      </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
         {products.map(product =>
           editId === product.id ? (
-            <div key={product.id} className="bg-white p-4 rounded-2xl shadow">
+            <div key={product.id} className="bg-white p-5 rounded-2xl shadow-xl border-2 border-pink-500 animate-pulse-once">
+              <h3 className="text-pink-600 font-bold mb-4 text-sm uppercase">Editing Product</h3>
               
-              <input
-                name="name"
-                value={editData.name}
-                onChange={handleInput}
-                placeholder="Name"
-                className="border px-3 py-2 w-full mb-2"
-              />
-              
-              <input
-                name="price"
-                value={editData.price}
-                onChange={handleInput}
-                placeholder="Price"
-                className="border px-3 py-2 w-full mb-2"
-              />
+              <div className="space-y-3">
+                <input
+                  name="name"
+                  value={editData.name}
+                  onChange={handleInput}
+                  placeholder="Product Name"
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-pink-500 outline-none"
+                />
+                
+                <div className="grid grid-cols-2 gap-2">
+                  <input
+                    name="price"
+                    type="number"
+                    value={editData.price}
+                    onChange={handleInput}
+                    placeholder="Price"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-pink-500 outline-none"
+                  />
+                  <input
+                    name="category"
+                    value={editData.category}
+                    onChange={handleInput}
+                    placeholder="Category"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-pink-500 outline-none"
+                  />
+                </div>
 
-              <input
-                name="category"
-                value={editData.category}
-                onChange={handleInput}
-                placeholder="Category"
-                className="border px-3 py-2 w-full mb-2"
-              />
+                <input
+                  name="subtype"
+                  value={editData.subtype}
+                  onChange={handleInput}
+                  placeholder="Subtype"
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-pink-500 outline-none"
+                />
 
-              <input
-                name="subtype"
-                value={editData.subtype}
-                onChange={handleInput}
-                placeholder="Subtype"
-                className="border px-3 py-2 w-full mb-2"
-              />
+                <textarea
+                  name="description"
+                  value={editData.description}
+                  onChange={handleInput}
+                  placeholder="Description"
+                  rows="2"
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-pink-500 outline-none resize-none"
+                />
 
-              <input
-                name="description"
-                value={editData.description}
-                onChange={handleInput}
-                placeholder="Description"
-                className="border px-3 py-2 w-full mb-2"
-              />
+                <input
+                  name="image"
+                  value={editData.image}
+                  onChange={handleInput}
+                  placeholder="Image URL"
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-pink-500 outline-none"
+                />
 
-              <input
-                name="image"
-                value={editData.image}
-                onChange={handleInput}
-                placeholder="Image URL"
-                className="border px-3 py-2 w-full mb-2"
-              />
-
-              <div className="flex gap-2">
-                <button
-                  onClick={handleUpdate}
-                  className="flex-1 bg-pink-600 text-white py-2 rounded-xl"
-                >
-                  Save
-                </button>
-
-                <button
-                  onClick={() => setEditId(null)}
-                  className="flex-1 bg-gray-300 py-2 rounded-xl"
-                >
-                  Cancel
-                </button>
+                <div className="flex gap-2 pt-2">
+                  <button
+                    onClick={handleUpdate}
+                    className="flex-1 bg-pink-600 hover:bg-pink-700 text-white py-2 rounded-xl text-sm font-bold transition shadow-md"
+                  >
+                    Save
+                  </button>
+                  <button
+                    onClick={() => setEditId(null)}
+                    className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 rounded-xl text-sm font-bold transition"
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
             </div>
           ) : (
-            <ProductCard
-              key={product.id}
-              product={product}
-              onEdit={() => handleEditClick(product)}
-              onDelete={() => deleteProduct(product.id)}
-            />
+            <div key={product.id} className="h-full">
+              <ProductCard
+                product={product}
+                onEdit={() => handleEditClick(product)}
+                onDelete={() => deleteProduct(product.id)}
+              />
+            </div>
           )
         )}
       </div>
