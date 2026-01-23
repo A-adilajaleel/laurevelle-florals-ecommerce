@@ -38,12 +38,12 @@ const OrderSuccess = () => {
           View My Orders
         </button>
 
-        <button 
+        {/* <button 
           onClick={() => navigate("/")}
           className="mt-6 text-gray-400 hover:text-pink-600 font-semibold transition-colors"
         >
           Continue Shopping
-        </button>
+        </button> */}
       </div>
     </div>
   )
