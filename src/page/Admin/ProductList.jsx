@@ -125,12 +125,25 @@ const { products, deleteProduct, updateProduct } = useContext(ProductContext)
               </div>
             </div>
           ) : (
-            <div key={product.id} className="h-full">
-              <ProductCard
-                product={product}
-                onEdit={() => handleEditClick(product)}
-                onDelete={() => deleteProduct(product.id)}
-              />
+            <div key={product.id} className="flex flex-col bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden h-full group hover:shadow-md transition-shadow">
+              <div className="flex flex-col h-full">
+                <ProductCard product={product} />
+              </div>
+              
+              <div className="p-4 bg-gray-50 flex flex-col xs:flex-row gap-2 border-t border-gray-100 mt-auto">
+                <button 
+                  onClick={() => handleEditClick(product)}
+                  className="flex-1 bg-white text-blue-600 border border-blue-200 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all active:scale-95"
+                >
+                  Edit
+                </button>
+                <button 
+                  onClick={() => deleteProduct(product.id)}
+                  className="flex-1 bg-white text-red-600 border border-red-200 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-red-600 hover:text-white hover:border-red-600 transition-all active:scale-95"
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           )
         )}
