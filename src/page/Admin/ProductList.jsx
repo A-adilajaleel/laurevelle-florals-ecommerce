@@ -3,7 +3,7 @@ import { ProductContext } from "../../Context/ProductContext"
 import ProductCard from "../../Components/PorductCard"
 
 const ProductList = () => {
-const { products, deleteProduct, updateProduct } = useContext(ProductContext)
+ const { products, deleteProduct, updateProduct } = useContext(ProductContext)
 
   const [editId, setEditId] = useState(null)
   const [editData, setEditData] = useState({})
@@ -24,100 +24,82 @@ const { products, deleteProduct, updateProduct } = useContext(ProductContext)
   }
 
   return (
-    <div className="p-4 sm:p-6 md:p-8 lg:p-12 bg-gray-50 min-h-screen">
+    <div className="p-4 md:p-8 bg-gray-50 min-h-screen">
       <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800">All Products</h2>
-        <span className="bg-pink-100 text-pink-600 px-6 py-1.5 rounded-full text-sm font-bold shadow-sm">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800">All Products</h2>
+        <span className="bg-pink-100 text-pink-600 px-4 py-1 rounded-full text-sm font-semibold">
           {products.length} Items Total
         </span>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
+      <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
         {products.map(product =>
           editId === product.id ? (
-            <div key={product.id} className="bg-white p-5 rounded-2xl shadow-xl border-2 border-pink-500 animate-pulse-once flex flex-col h-full">
-              <h3 className="text-pink-600 font-bold mb-4 text-sm uppercase tracking-wide">Editing Product</h3>
+            <div key={product.id} className="bg-white p-5 rounded-2xl shadow-xl border-2 border-pink-500 animate-pulse-once">
+              <h3 className="text-pink-600 font-bold mb-4 text-sm uppercase">Editing Product</h3>
               
-              <div className="space-y-4 flex-1">
-                <div className="space-y-1">
-                  <p className="text-[10px] font-bold text-gray-400 uppercase ml-1">Name</p>
-                  <input
-                    name="name"
-                    value={editData.name}
-                    onChange={handleInput}
-                    placeholder="Product Name"
-                    className="w-full border border-gray-300 rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-pink-500 outline-none transition-all"
-                  />
-                </div>
+              <div className="space-y-3">
+                <input
+                  name="name"
+                  value={editData.name}
+                  onChange={handleInput}
+                  placeholder="Product Name"
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-pink-500 outline-none"
+                />
                 
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="space-y-1">
-                    <p className="text-[10px] font-bold text-gray-400 uppercase ml-1">Price (€)</p>
-                    <input
-                      name="price"
-                      type="number"
-                      value={editData.price}
-                      onChange={handleInput}
-                      placeholder="Price"
-                      className="w-full border border-gray-300 rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-pink-500 outline-none transition-all"
-                    />
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-[10px] font-bold text-gray-400 uppercase ml-1">Category</p>
-                    <input
-                      name="category"
-                      value={editData.category}
-                      onChange={handleInput}
-                      placeholder="Category"
-                      className="w-full border border-gray-300 rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-pink-500 outline-none transition-all"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-1">
-                  <p className="text-[10px] font-bold text-gray-400 uppercase ml-1">Subtype</p>
+                <div className="grid grid-cols-2 gap-2">
                   <input
-                    name="subtype"
-                    value={editData.subtype}
+                    name="price"
+                    type="number"
+                    value={editData.price}
                     onChange={handleInput}
-                    placeholder="Subtype"
-                    className="w-full border border-gray-300 rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-pink-500 outline-none transition-all"
+                    placeholder="Price"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-pink-500 outline-none"
                   />
-                </div>
-
-                <div className="space-y-1">
-                  <p className="text-[10px] font-bold text-gray-400 uppercase ml-1">Description</p>
-                  <textarea
-                    name="description"
-                    value={editData.description}
-                    onChange={handleInput}
-                    placeholder="Description"
-                    rows="3"
-                    className="w-full border border-gray-300 rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-pink-500 outline-none resize-none transition-all"
-                  />
-                </div>
-
-                <div className="space-y-1">
-                  <p className="text-[10px] font-bold text-gray-400 uppercase ml-1">Image URL</p>
                   <input
-                    name="image"
-                    value={editData.image}
+                    name="category"
+                    value={editData.category}
                     onChange={handleInput}
-                    placeholder="Image URL"
-                    className="w-full border border-gray-300 rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-pink-500 outline-none transition-all"
+                    placeholder="Category"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-pink-500 outline-none"
                   />
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-2 mt-auto pt-4">
+                <input
+                  name="subtype"
+                  value={editData.subtype}
+                  onChange={handleInput}
+                  placeholder="Subtype"
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-pink-500 outline-none"
+                />
+
+                <textarea
+                  name="description"
+                  value={editData.description}
+                  onChange={handleInput}
+                  placeholder="Description"
+                  rows="2"
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-pink-500 outline-none resize-none"
+                />
+
+                <input
+                  name="image"
+                  value={editData.image}
+                  onChange={handleInput}
+                  placeholder="Image URL"
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-pink-500 outline-none"
+                />
+
+                <div className="flex gap-2 pt-2">
                   <button
                     onClick={handleUpdate}
-                    className="w-full bg-pink-600 hover:bg-pink-700 text-white py-3 rounded-xl text-sm font-bold transition-all shadow-md active:scale-95"
+                    className="flex-1 bg-pink-600 hover:bg-pink-700 text-white py-2 rounded-xl text-sm font-bold transition shadow-md"
                   >
-                    Save Changes
+                    Save
                   </button>
                   <button
                     onClick={() => setEditId(null)}
-                    className="w-full bg-gray-200 hover:bg-gray-300 text-gray-700 py-3 rounded-xl text-sm font-bold transition-all active:scale-95"
+                    className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 py-2 rounded-xl text-sm font-bold transition"
                   >
                     Cancel
                   </button>
@@ -125,25 +107,12 @@ const { products, deleteProduct, updateProduct } = useContext(ProductContext)
               </div>
             </div>
           ) : (
-            <div key={product.id} className="flex flex-col bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden h-full group hover:shadow-md transition-shadow">
-              <div className="flex flex-col h-full">
-                <ProductCard product={product} />
-              </div>
-              
-              <div className="p-4 bg-gray-50 flex flex-col xs:flex-row gap-2 border-t border-gray-100 mt-auto">
-                <button 
-                  onClick={() => handleEditClick(product)}
-                  className="flex-1 bg-white text-blue-600 border border-blue-200 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all active:scale-95"
-                >
-                  Edit
-                </button>
-                <button 
-                  onClick={() => deleteProduct(product.id)}
-                  className="flex-1 bg-white text-red-600 border border-red-200 py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider hover:bg-red-600 hover:text-white hover:border-red-600 transition-all active:scale-95"
-                >
-                  Delete
-                </button>
-              </div>
+            <div key={product.id} className="h-full">
+              <ProductCard
+                product={product}
+                onEdit={() => handleEditClick(product)}
+                onDelete={() => deleteProduct(product.id)}
+              />
             </div>
           )
         )}
